@@ -43,12 +43,14 @@ function getAllCases(){
             //show the date
             clone.querySelector(".date").textContent=`${request.time.day} - ${request.time.month} - ${request.time.year}`;
             //show the message
-            clone.querySelector(".message").textContent=request.message;
+            let message = clone.querySelector(".message");
+            message.textContent=request.message;
             //show importance
             clone.querySelector(".importance").textContent=request.importance;
             if(request.importance<40){
                     //then show green
                     clone.querySelector(".importance").style.color = "#32FF4F";
+                    
             }
             else if(request.importance>70){
                     //red
@@ -60,13 +62,29 @@ function getAllCases(){
             }
 
             // more-button
-            clone.querySelector(".more").addEventListener("click", function(e) {
+            // clone.querySelector(".more").addEventListener("click", function(e) {
+            //     console.log("Clicked more-button");
+            //     console.log(e);
+               
+            //     // request.fullclassList.add("hidden");
+            // })
+            clone.querySelector(".more").addEventListener("click", function(showText) {
                 console.log("Clicked more-button");
-                console.log(e);
+                console.log(showText);
+                message.textContent=request.message + request.full;
+                // request.full.classList.add("hidden");
+                
             })
-
+            clone.querySelector(".completed").addEventListener("click", function(removeTask) {
+                console.log(event.target.section);
+                // event.target.section.remove();
+                removeTask.target.section.remove();
+            });
+            // clone.querySelector(".message").textContent=request.message;
             document.querySelector("#cases").appendChild(clone)
         });
+        
+        
     }
 
 
